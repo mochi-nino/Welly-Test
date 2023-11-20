@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/react@17/umd/react.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/babel-standalone@6.26.0/babel.min.js"></script>
+  </head>
+  </head>
+  <body>
+    <div id="example"></div>
+
+    <script>
+      // 1.JavaScript: 字串反轉
+      function reverseString(str) {
+        return str.split("").reverse().join("");
+        //  拆成陣列再反轉陣列再接起來變字串
+      }
+
+      console.log(reverseString("Hello")); // 預期輸出: "olleH”
+
+      // ---------------------------------------------------------------------------------------------------------
+
+      // 2. JavaScript: 陣列過濾
+      // 問題：寫一個JavaScript函式，接受一個數字陣列，並返回該陣列中所有大於5的數字。
+      // 範例：
+
+      function filterNumbersGreaterThanFive(numbers) {
+        return numbers.filter((munbers) => munbers > 5);
+        // 篩選出陣列每個數字大於5
+      }
+
+      const numbers = [2, 8, 4, 10, 1, 7];
+      console.log(filterNumbersGreaterThanFive(numbers)); // 預期輸出: [8, 10, 7]
+
+      //   ---------------------------------------------------------------------------------------------------------
+
+      // 3. JavaScript: 重構
+      // 問題：重構這段程式碼並說明原因
+
+      function formatName(firstName, lastName) {
+        return [firstName, lastName].join(" ");
+        // 把兩個參數放入陣列並轉字串在中間加入空格
+        // 原程式碼意思是就算firstName為空值有lastName的話也要在前面加個空格
+
+        // let formattedName = "";
+
+        // if (firstName) {
+        //   formattedName += firstName;
+        // }
+
+        // if (lastName) {
+        //   formattedName += " " + lastName;
+        // }
+
+        // return formattedName;
+      }
+      console.log(formatName(null, "2"));
+    </script>
+
+    <script type="text/babel">
+      // 4. React: 條件渲染 // 問題：在React中，如何根據條件渲染兩種不同的內容？
+      // if 條件運算    
+
+      function ConditionalRendering({ isLoggedIn }) {
+        // 實作你的條件渲染
+        if (isLoggedIn) {
+          return <h4>已登入</h4>;
+        } else {
+          return <h4>請先登入</h4>;
+        }
+      }
+
+      // 5. React: 組件 //
+      //  問題：使用React創建一個簡單的計數器組件，具有增加和減少計數的按鈕。
+      function Counter() {
+        const [count, setCount] = React.useState(0);
+        // React.useState管理狀態，setCount用來更新count的值
+        // setCount非同步
+
+        function countRegulation(type) {
+          setCount((prevCount) => (type ? prevCount + 1 : prevCount - 1));
+        //調用setCount(prevCount = 原本的count)
+        }
+
+        return (
+          <div>
+            <button onClick={() => countRegulation(1)}>增加</button>
+            <p>{count}</p>
+            <button onClick={() => countRegulation(0)}>減少</button>
+          </div>
+        );
+      }
+
+      ReactDOM.render(
+        // JSX控制html要{}
+        <div>
+            <h2 style={{color:'red'}}>條件渲染</h2>
+            <ConditionalRendering isLoggedIn={false} />
+            <h2 style={{color:'red'}}>計數器</h2>
+            <Counter />
+        </div>,
+        document.getElementById("example")
+        // 渲染到"example"
+      );
+    </script>
+  </body>
+</html>
